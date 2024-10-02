@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CapsuleCollide : MonoBehaviour
+public class FixGround : MonoBehaviour
 {
+    private float top = 0.5f;
     // Start is called before the first frame update
-    private float capsuleRotate = 3.0f;
     void Start()
     {
         
@@ -14,19 +14,12 @@ public class CapsuleCollide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") {
-            Destroy(gameObject);
-        }
         if (other.tag == "Target") {
-            Destroy(other.gameObject);
+            other.transform.Translate(Vector3.up * top);
         }
-        if (other.tag == "Projectile") {
-            transform.Rotate(Vector3.back * capsuleRotate);
-            Destroy(other.gameObject);
         }
-    }
 }
