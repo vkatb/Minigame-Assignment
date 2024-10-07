@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FixGround : MonoBehaviour
+public class DestroyAfterTime : MonoBehaviour
 {
-    private float top = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(DestroyTarget());
     }
 
     // Update is called once per frame
@@ -16,10 +15,10 @@ public class FixGround : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+
+    IEnumerator DestroyTarget()
     {
-        if (other.tag == "Target") {
-            other.transform.Translate(Vector3.up * top);
-        }
-        }
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
+    }
 }

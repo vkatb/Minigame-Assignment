@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CapsuleCollide : MonoBehaviour
+public class CapsuleCollideGood : MonoBehaviour
 {
     // Start is called before the first frame update
+    private float capsuleRotate = 4.0f;
     void Start()
     {
         
@@ -24,7 +25,7 @@ public class CapsuleCollide : MonoBehaviour
             Destroy(other.gameObject);
         }
         if (other.tag == "Projectile") {
-            Destroy(gameObject);
+            transform.Rotate(Vector3.back * capsuleRotate);
             Destroy(other.gameObject);
         }
     }
